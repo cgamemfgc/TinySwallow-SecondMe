@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CFBundleIdentifier</key>
+	<dict>
+		<key>LSUIElement</key>
+		<true/>
+		<key>CFBundleDisplayName</key>
+		<string>Second Me</string>
+		<key>CFBundleName</key>
+		<string>SecondMe</string>
+		<key>CFBundleShortVersionString</key>
+		<string>1.0.0</string>
+		<key>CFBundleVersion</key>
+		<string>1</string>
+		<key>CFBundleURLTypes</key>
+		<array>
+			<dict>
+				<key>CFBundleURLName</key>
+				<string>SecondMe Settings</string>
+				<key>CFBundleURLSchemes</key>
+				<array>
+					<string>secondme</string>
+				</array>
+			</dict>
+		</array>
+		<key>NSDocumentsFolderUsageDescription</key>
+		<string>メモファイルを読み込んで、より良い会話体験を提供します</string>
+		<key>NSDesktopFolderUsageDescription</key>
+		<string>デスクトップのファイルを参照して、コンテキストに応じた回答を生成します</string>
+		<key>NSMicrophoneUsageDescription</key>
+		<string>音声でメッセージを入力できるようにします</string>
+		<key>LSMinimumSystemVersion</key>
+		<string>13.0</string>
+	</dict>
+</dict>
+</plist>

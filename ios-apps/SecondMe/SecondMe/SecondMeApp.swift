@@ -37,6 +37,7 @@ struct ChatContentView: View {
     @State private var messageText = ""
     @State private var messages: [ChatMessage] = []
     @State private var isProcessing = false
+    @State private var hasAddedWelcomeMessage = false // 重複防止フラグ
     
     var body: some View {
         VStack(spacing: 0) {
@@ -65,7 +66,7 @@ struct ChatContentView: View {
                     .padding(.horizontal, 16)
                     .padding(.vertical, 8)
                 }
-                .background(Color(.windowBackground))
+                .background(.windowBackground)
                 .onChange(of: messages.count) { _, _ in
                     // 新しいメッセージが追加されたら自動スクロール
                     if let lastMessage = messages.last {
@@ -85,10 +86,13 @@ struct ChatContentView: View {
                 onSendMessage: sendMessage
             )
         }
-        .background(Color(.windowBackground))
+        .background(.windowBackground)
         .onAppear {
             // アプリ起動時の初期メッセージ
-            addWelcomeMessage()
+            if !hasAddedWelcomeMessage {
+                addWelcomeMessage()
+                hasAddedWelcomeMessage = true
+            }
         }
     }
     
@@ -110,7 +114,7 @@ struct ChatContentView: View {
         // TODO: Phase1完了後にPython連携を実装
         // 現在は仮のレスポンス
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            let respons = generateMockResponse(for: currentMessage)
+            let response = generateMockResponse(for: currentMessage)
             let aiMessage = ChatMessage(
                 content: response,
                 isUser: false,
@@ -378,7 +382,7 @@ struct SettingsView: View {
             Spacer()
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
-        .background(Color(.windowBackground))
+        .background(.windowBackground)
     }
 }
 

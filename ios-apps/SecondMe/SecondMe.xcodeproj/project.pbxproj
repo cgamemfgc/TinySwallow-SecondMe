@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		52F313D82DF87D1C0006AC47 /* Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 52F313D72DF87D1C0006AC47 /* Info.plist */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXContainerItemProxy section */
 		52F313B82DF1D96F0006AC47 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -27,11 +31,25 @@
 		52F313A92DF1D96E0006AC47 /* SecondMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecondMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F313B72DF1D96F0006AC47 /* SecondMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecondMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		52F313C12DF1D96F0006AC47 /* SecondMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecondMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52F313D72DF87D1C0006AC47 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		52F313DA2DF87F780006AC47 /* Exceptions for "SecondMe" folder in "SecondMe" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 52F313A82DF1D96E0006AC47 /* SecondMe */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
 		52F313AB2DF1D96E0006AC47 /* SecondMe */ = {
 			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				52F313DA2DF87F780006AC47 /* Exceptions for "SecondMe" folder in "SecondMe" target */,
+			);
 			path = SecondMe;
 			sourceTree = "<group>";
 		};
@@ -75,6 +93,7 @@
 		52F313A02DF1D96E0006AC47 = {
 			isa = PBXGroup;
 			children = (
+				52F313D72DF87D1C0006AC47 /* Info.plist */,
 				52F313AB2DF1D96E0006AC47 /* SecondMe */,
 				52F313BA2DF1D96F0006AC47 /* SecondMeTests */,
 				52F313C42DF1D96F0006AC47 /* SecondMeUITests */,
@@ -212,6 +231,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				52F313D82DF87D1C0006AC47 /* Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -398,6 +418,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SecondMe/Info.plist;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -423,6 +445,8 @@
 				CURRENT_PROJECT_VERSION = 1;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SecondMe/Info.plist;
+				INFOPLIST_KEY_LSUIElement = YES;
 				INFOPLIST_KEY_NSHumanReadableCopyright = "";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
