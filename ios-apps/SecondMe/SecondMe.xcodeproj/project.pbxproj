@@ -1,0 +1,546 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		52F313B82DF1D96F0006AC47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52F313A12DF1D96E0006AC47 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52F313A82DF1D96E0006AC47;
+			remoteInfo = SecondMe;
+		};
+		52F313C22DF1D96F0006AC47 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 52F313A12DF1D96E0006AC47 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 52F313A82DF1D96E0006AC47;
+			remoteInfo = SecondMe;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		52F313A92DF1D96E0006AC47 /* SecondMe.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SecondMe.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		52F313B72DF1D96F0006AC47 /* SecondMeTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecondMeTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		52F313C12DF1D96F0006AC47 /* SecondMeUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SecondMeUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		52F313AB2DF1D96E0006AC47 /* SecondMe */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SecondMe;
+			sourceTree = "<group>";
+		};
+		52F313BA2DF1D96F0006AC47 /* SecondMeTests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SecondMeTests;
+			sourceTree = "<group>";
+		};
+		52F313C42DF1D96F0006AC47 /* SecondMeUITests */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = SecondMeUITests;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		52F313A62DF1D96E0006AC47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52F313B42DF1D96F0006AC47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52F313BE2DF1D96F0006AC47 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		52F313A02DF1D96E0006AC47 = {
+			isa = PBXGroup;
+			children = (
+				52F313AB2DF1D96E0006AC47 /* SecondMe */,
+				52F313BA2DF1D96F0006AC47 /* SecondMeTests */,
+				52F313C42DF1D96F0006AC47 /* SecondMeUITests */,
+				52F313AA2DF1D96E0006AC47 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		52F313AA2DF1D96E0006AC47 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				52F313A92DF1D96E0006AC47 /* SecondMe.app */,
+				52F313B72DF1D96F0006AC47 /* SecondMeTests.xctest */,
+				52F313C12DF1D96F0006AC47 /* SecondMeUITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		52F313A82DF1D96E0006AC47 /* SecondMe */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52F313CB2DF1D96F0006AC47 /* Build configuration list for PBXNativeTarget "SecondMe" */;
+			buildPhases = (
+				52F313A52DF1D96E0006AC47 /* Sources */,
+				52F313A62DF1D96E0006AC47 /* Frameworks */,
+				52F313A72DF1D96E0006AC47 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				52F313AB2DF1D96E0006AC47 /* SecondMe */,
+			);
+			name = SecondMe;
+			packageProductDependencies = (
+			);
+			productName = SecondMe;
+			productReference = 52F313A92DF1D96E0006AC47 /* SecondMe.app */;
+			productType = "com.apple.product-type.application";
+		};
+		52F313B62DF1D96F0006AC47 /* SecondMeTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52F313CE2DF1D96F0006AC47 /* Build configuration list for PBXNativeTarget "SecondMeTests" */;
+			buildPhases = (
+				52F313B32DF1D96F0006AC47 /* Sources */,
+				52F313B42DF1D96F0006AC47 /* Frameworks */,
+				52F313B52DF1D96F0006AC47 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52F313B92DF1D96F0006AC47 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				52F313BA2DF1D96F0006AC47 /* SecondMeTests */,
+			);
+			name = SecondMeTests;
+			packageProductDependencies = (
+			);
+			productName = SecondMeTests;
+			productReference = 52F313B72DF1D96F0006AC47 /* SecondMeTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		52F313C02DF1D96F0006AC47 /* SecondMeUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 52F313D12DF1D96F0006AC47 /* Build configuration list for PBXNativeTarget "SecondMeUITests" */;
+			buildPhases = (
+				52F313BD2DF1D96F0006AC47 /* Sources */,
+				52F313BE2DF1D96F0006AC47 /* Frameworks */,
+				52F313BF2DF1D96F0006AC47 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				52F313C32DF1D96F0006AC47 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				52F313C42DF1D96F0006AC47 /* SecondMeUITests */,
+			);
+			name = SecondMeUITests;
+			packageProductDependencies = (
+			);
+			productName = SecondMeUITests;
+			productReference = 52F313C12DF1D96F0006AC47 /* SecondMeUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		52F313A12DF1D96E0006AC47 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1630;
+				LastUpgradeCheck = 1630;
+				TargetAttributes = {
+					52F313A82DF1D96E0006AC47 = {
+						CreatedOnToolsVersion = 16.3;
+					};
+					52F313B62DF1D96F0006AC47 = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 52F313A82DF1D96E0006AC47;
+					};
+					52F313C02DF1D96F0006AC47 = {
+						CreatedOnToolsVersion = 16.3;
+						TestTargetID = 52F313A82DF1D96E0006AC47;
+					};
+				};
+			};
+			buildConfigurationList = 52F313A42DF1D96E0006AC47 /* Build configuration list for PBXProject "SecondMe" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 52F313A02DF1D96E0006AC47;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 52F313AA2DF1D96E0006AC47 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				52F313A82DF1D96E0006AC47 /* SecondMe */,
+				52F313B62DF1D96F0006AC47 /* SecondMeTests */,
+				52F313C02DF1D96F0006AC47 /* SecondMeUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		52F313A72DF1D96E0006AC47 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52F313B52DF1D96F0006AC47 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52F313BF2DF1D96F0006AC47 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		52F313A52DF1D96E0006AC47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52F313B32DF1D96F0006AC47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		52F313BD2DF1D96F0006AC47 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		52F313B92DF1D96F0006AC47 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52F313A82DF1D96E0006AC47 /* SecondMe */;
+			targetProxy = 52F313B82DF1D96F0006AC47 /* PBXContainerItemProxy */;
+		};
+		52F313C32DF1D96F0006AC47 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 52F313A82DF1D96E0006AC47 /* SecondMe */;
+			targetProxy = 52F313C22DF1D96F0006AC47 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		52F313C92DF1D96F0006AC47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		52F313CA2DF1D96F0006AC47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = macosx;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		52F313CC2DF1D96F0006AC47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SecondMe/SecondMe.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = godo.SecondMe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Debug;
+		};
+		52F313CD2DF1D96F0006AC47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = SecondMe/SecondMe.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSHumanReadableCopyright = "";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/../Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = godo.SecondMe;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				REGISTER_APP_GROUPS = YES;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+			};
+			name = Release;
+		};
+		52F313CF2DF1D96F0006AC47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = godo.SecondMeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SecondMe.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SecondMe";
+			};
+			name = Debug;
+		};
+		52F313D02DF1D96F0006AC47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 15.4;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = godo.SecondMeTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/SecondMe.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/SecondMe";
+			};
+			name = Release;
+		};
+		52F313D22DF1D96F0006AC47 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = godo.SecondMeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = SecondMe;
+			};
+			name = Debug;
+		};
+		52F313D32DF1D96F0006AC47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = godo.SecondMeUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_TARGET_NAME = SecondMe;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		52F313A42DF1D96E0006AC47 /* Build configuration list for PBXProject "SecondMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52F313C92DF1D96F0006AC47 /* Debug */,
+				52F313CA2DF1D96F0006AC47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52F313CB2DF1D96F0006AC47 /* Build configuration list for PBXNativeTarget "SecondMe" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52F313CC2DF1D96F0006AC47 /* Debug */,
+				52F313CD2DF1D96F0006AC47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52F313CE2DF1D96F0006AC47 /* Build configuration list for PBXNativeTarget "SecondMeTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52F313CF2DF1D96F0006AC47 /* Debug */,
+				52F313D02DF1D96F0006AC47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		52F313D12DF1D96F0006AC47 /* Build configuration list for PBXNativeTarget "SecondMeUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				52F313D22DF1D96F0006AC47 /* Debug */,
+				52F313D32DF1D96F0006AC47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 52F313A12DF1D96E0006AC47 /* Project object */;
+}
