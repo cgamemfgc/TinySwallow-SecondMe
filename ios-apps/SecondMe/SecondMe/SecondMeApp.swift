@@ -33,18 +33,31 @@ struct SecondMeApp: App {
 
 // MARK: - メインチャット画面
 struct ChatContentView: View {
+    // APIクライアント
+    @StateObject private var apiClient = APIClient.shared
     // チャットの状態管理
     @State private var messageText = ""
     @State private var messages: [ChatMessage] = []
     @State private var isProcessing = false
     @State private var hasAddedWelcomeMessage = false // 重複防止フラグ
+    @State private var showConnectionStatus = false
     
     var body: some View {
         VStack(spacing: 0) {
-            // ヘッダー
-            HeaderView()
+            // ヘッダー（接続状態を追加）
+            HeaderView(
+                isConnected: apiClient.isConnected,
+                onConnectionTap: { showConnectionStatus.toggle()}
+            )
             
             Divider()
+            
+            // 接続状態表示（オプション）
+            if showConnectionStatus {
+                ConnectionStatusView(apiClient: apiClient)
+                    .transition(.slide)
+                Divider()
+            }
             
             // メッセージ表示エリア
             ScrollViewReader { proxy in
@@ -88,66 +101,82 @@ struct ChatContentView: View {
         }
         .background(.windowBackground)
         .onAppear {
-            // アプリ起動時の初期メッセージ
-            if !hasAddedWelcomeMessage {
-                addWelcomeMessage()
-                hasAddedWelcomeMessage = true
+            // 初期表示メソッド
+            setupInitialState()
+        }
+    }
+    
+    // MARK: - Private Methods
+    
+    // 初期状態のセットアップ
+    private func setupInitialState() {
+        // ウェルカムメッセージ追加
+        if !hasAddedWelcomeMessage {
+            addWelcomeMessage()
+            hasAddedWelcomeMessage = true
+        }
+        
+        // サーバー接続テスト
+        Task {
+            let isConnected = await apiClient.testConnection()
+            if isConnected {
+                print("TinySwallow サーバー接続成功")
+            } else {
+                print("TinySwallow サーバー接続失敗")
             }
         }
     }
     
-    // メッセージ送信処理
+    // メッセージ送信処理(API呼び出し)
     private func sendMessage() {
         guard !messageText.trim().isEmpty && !isProcessing else { return }
         
-        let userMessage = ChatMessage(
-            content: messageText,
-            isUser: true,
-            timestamp: Date()
-        )
-        
+        let userMessage = ChatMessage.user(messageText)
         messages.append(userMessage)
+        
         let currentMessage = messageText
         messageText = ""
         isProcessing = true
         
-        // TODO: Phase1完了後にPython連携を実装
-        // 現在は仮のレスポンス
-        DispatchQueue.main.asyncAfter(deadline: .now() + 1.5) {
-            let response = generateMockResponse(for: currentMessage)
-            let aiMessage = ChatMessage(
-                content: response,
-                isUser: false,
-                timestamp: Date()
-            )
-            messages.append(aiMessage)
-            isProcessing = false
+        // TinySwalow　APIにリクエスト
+        Task {
+            do {
+                let response = try await apiClient.sendMessage(currentMessage)
+                let aiMessage = ChatMessage.assistant(response)
+                
+                await MainActor.run {
+                    messages.append(aiMessage)
+                    isProcessing = false
+                }
+            } catch {
+                // エラー時のフォールバック
+                let errorMessage = ChatMessage.assistant(
+                    "申し訳ありません。現在TinySwallowサーバーに接続できません。\n\nエラー: \(error.localizedDescription)\n\n接続状態を確認してください。"
+                )
+                await MainActor.run {
+                    messages.append(errorMessage)
+                    isProcessing = false
+                }
+                
+                print("APIエラー: \(error)")
+            }
         }
     }
     
     //初期ウェルカムメッセージ
     private func addWelcomeMessage() {
-        let welcomeMessage = ChatMessage(
-            content: "こんにちは！私はあなたの「第二の自分」AIです。\nメモの内容を参照しながら、自然な会話ができます。\n\n何か聞きたいことはありますか？",
-            isUser: false,
-            timestamp: Date()
+        let welcomeMessage = ChatMessage.assistant(
+            "こんにちは！私はあなたの「第二の自分」AIです。\nメモの内容を参照しながら、自然な会話ができます。\n\n何か聞きたいことはありますか？",
         )
         messages.append(welcomeMessage)
     }
-    
-    // 仮のレスポンス生成（Phase1用）
-    private func generateMockResponse(for input: String) -> String {
-        let responses = [
-            "なるほど、「\(input)」について考えてみますね。\n\nまだTinySwallowとの連携は実装中ですが、Phase 1では基本的なUI動作を確認しています。",
-           "「\(input)」というご質問ですね。\n\nPhase 2で実装予定のメモ検索機能があれば、より具体的な回答ができるようになります。",
-           "興味深い質問です！\n\n現在はUIの動作確認段階ですが、将来的にはあなたのメモや過去の会話から学習して、より個人化された回答ができるようになります。"
-       ]
-        return responses.randomElement() ?? "申し訳ありません。現在は開発中です。"
-    }
-}
 
 // MARK: - ヘッダービュー
 struct HeaderView: View {
+    // 接続状態パラメータ
+    let isConnected: Bool
+    let onConnectionTap: () -> Void
+    
     var body: some View {
         HStack {
             // アプリアイコン
@@ -160,6 +189,20 @@ struct HeaderView: View {
                 .fontWeight(.medium)
             
             Spacer()
+            
+            // 接続状態インジケーター
+            Button(action: onConnectionTap) {
+                HStack(spacing: 4) {
+                    Circle()
+                        .fill(isConnected ? .green : .red)
+                        .frame(width: 8, height: 8)
+                    Text(isConnected ? "接続済み" : "未接続")
+                        .font(.caption)
+                        .foregroundColor(.secondary)
+                }
+            }
+            .buttonStyle(.plain)
+            .help("サーバー接続状態")
             
             // 設定ボタン
             Button(action: openSettings) {
@@ -196,14 +239,49 @@ struct HeaderView: View {
     }
 }
 
-// MARK: - メッセージデータモデル
-struct ChatMessage: Identifiable, Equatable {
-    let id = UUID()
-    let content: String
-    let isUser: Bool
-    let timestamp: Date
-    var referencedFiles: [String] = []
+// MARK: - 接続状態管理
+struct ConnectionStatusView: View {
+    @ObservedObject var apiClient: APIClient
+    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 8) {
+            HStack {
+                Text("サーバー接続状態")
+                    .font(.headline)
+                
+                Spacer()
+                
+                Button("再接続テスト") {
+                    Task {
+                        await apiClient.testConnection()
+                    }
+                }
+                .font(.caption)
+            }
+            Text(apiClient.connectionStatusText)
+                .font(.subheadline)
+                .foregroundColor(apiClient.isConnected ? .primary : .red)
+            
+            if apiClient.isConnected, !apiClient.serverSummary.isEmpty {
+                Text(apiClient.serverSummary)
+                    .font(.caption)
+                    .foregroundColor(.secondary)
+            }
+        }
+        .padding(.horizontal, 16)
+        .padding(.vertical, 8)
+        .background(Color(.controlBackgroundColor).opacity(0.5))
+    }
 }
+    
+//// MARK: - メッセージデータモデル
+//struct ChatMessage: Identifiable, Equatable {
+//    let id = UUID()
+//    let content: String
+//    let isUser: Bool
+//    let timestamp: Date
+//    var referencedFiles: [String] = []
+//}
 
 // MARK: - メッセージバブル
 struct MessageBubble: View {
@@ -211,31 +289,33 @@ struct MessageBubble: View {
     
     var body: some View {
         HStack {
-            if message.isUser {
+            if message.role == "user" {
                 Spacer(minLength: 50)
             }
             
-            VStack(alignment: message.isUser ? .trailing : .leading, spacing: 4) {
+            VStack(alignment: message.role == "user" ? .trailing : .leading, spacing: 4) {
                 Text(message.content)
                     .padding(.horizontal, 16)
                     .padding(.vertical, 10)
                     .background(
                         RoundedRectangle(cornerRadius: 16)
-                            .fill(message.isUser ? Color.accentColor.opacity(0.1) : Color.secondary.opacity(0.1))
+                            .fill(message.role == "user" ? Color.accentColor.opacity(0.1) : Color.secondary.opacity(0.1))
                     )
                     .overlay(
                         RoundedRectangle(cornerRadius: 16)
                             .stroke(
-                                message.isUser ? Color.accentColor.opacity(0.3) : Color.clear, lineWidth: 1
+                                message.role == "user" ? Color.accentColor.opacity(0.3) : Color.clear, lineWidth: 1
                             )
                     )
-                Text(message.timestamp, style: .time)
+                
+                // 現在時刻表示
+                Text(Date(), style: .time)
                     .font(.caption2)
                     .foregroundColor(.secondary)
                     .padding(.horizontal, 8)
             }
             
-            if !message.isUser {
+            if message.role != "user" {
                 Spacer(minLength: 50)
             }
         }
@@ -251,11 +331,11 @@ struct EmptyStateView: View {
                 .font(.system(size: 48))
                 .foregroundColor(.secondary)
             
-            Text("会話を始めましょう")
+            Text("TinySwallowをの会話を始めましょう")
                 .font(.title3)
                 .fontWeight(.medium)
             
-            Text("下のメッセージ欄に質問や話したいことを入力してください")
+            Text("下のメッセージ欄に質問や話したいことを入力してください。\nMLXで最適化されたTinySwallow-1.5Bが応答します。")
                 .font(.subheadline)
                 .foregroundColor(.secondary)
                 .multilineTextAlignment(.center)
@@ -273,7 +353,7 @@ struct ProcessingIndicator: View {
             ProgressView()
                 .scaleEffect(0.8)
             
-            Text("考え中")
+            Text("考え中...")
                 .foregroundColor(.secondary)
                 .font(.subheadline)
             
@@ -370,19 +450,61 @@ struct InputArea: View {
 
 //MARK: - 設定画面
 struct SettingsView: View {
+    @StateObject private var apiClient = APIClient.shared
+    
     var body: some View {
-        VStack {
-            Text("設定")
+        VStack(spacing: 20) {
+            Text("Second Me 設定")
                 .font(.largeTitle)
                 .padding()
             
-            Text("Phase2で詳細な設定画面を実装予定")
-                .foregroundColor(.secondary)
-            
+            GroupBox("サーバー接続") {
+                VStack(alignment: .leading, spacing: 12) {
+                    HStack {
+                        Text("状態")
+                        Spacer()
+                        Text(apiClient.connectionStatusText)
+                            .foregroundColor(apiClient.isConnected ? .green : .red)
+                    }
+                    
+                    if apiClient.isConnected {
+                        Text(apiClient.serverSummary)
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                    }
+                    
+                    Button("接続テスト") {
+                        Task {
+                            await apiClient.testConnection()
+                        }
+                    }
+                }
+                .padding()
+            }
+                
+            GroupBox("Phase1 MVP") {
+                VStack(alignment: .leading, spacing: 8) {
+                    Text("☑️SwiftUI チャットUI")
+                    Text("☑️TinySwallow MLX統合")
+                    Text("☑️FastAPIサーバー")
+                    Text("ファイル連携（Phase1.8実装予定）")
+                    Text("音声入力（Phase2で実装予定）")
+                }
+                .padding()
+            }
             Spacer()
+            
+            Text("Phase1.7: Python連携完成！")
+                .foregroundColor(.secondary)
+                .font(.footnote)
         }
         .frame(maxWidth: .infinity, maxHeight: .infinity)
         .background(.windowBackground)
+        .onAppear {
+            Task {
+                await apiClient.testConnection()
+            }
+        }
     }
 }
 

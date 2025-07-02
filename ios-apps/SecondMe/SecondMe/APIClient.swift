@@ -180,7 +180,7 @@ enum APIError: LocalizedError {
 @MainActor
 class APIClient: ObservableObject {
     // MARK: - Properties
-    static let shaerd = APIClient()
+    static let shared = APIClient()
     
     private let baseURL: String
     private let session: URLSession
@@ -220,7 +220,7 @@ class APIClient: ObservableObject {
     func checkHealth() async throws -> HealthResponse {
         do {
             let health: HealthResponse = try await performRequest(
-                endpoint: "/health"
+                endpoint: "/health",
                 method: .GET
             )
             
