@@ -34,7 +34,7 @@ struct SecondMeApp: App {
 // MARK: - メインチャット画面
 struct ChatContentView: View {
     // APIクライアント
-    @StateObject private var apiClient = APIClient.shared
+    @ObservedObject private var apiClient = APIClient.shared
     // チャットの状態管理
     @State private var messageText = ""
     @State private var messages: [ChatMessage] = []
@@ -170,6 +170,7 @@ struct ChatContentView: View {
         )
         messages.append(welcomeMessage)
     }
+}
 
 // MARK: - ヘッダービュー
 struct HeaderView: View {
@@ -206,7 +207,7 @@ struct HeaderView: View {
             
             // 設定ボタン
             Button(action: openSettings) {
-                Image(systemName: "gearShape")
+                Image(systemName: "gearshape")
                     .font(.title3)
                     .foregroundColor(.secondary)
             }
@@ -229,7 +230,7 @@ struct HeaderView: View {
     
     private func openSettings() {
         // TODO: 設定ウィンドウを開く
-        if let url = URL(string:"secondme://settings") {
+        if let url = URL(string: "secondme://settings") {
             NSWorkspace.shared.open(url)
         }
     }
@@ -331,7 +332,7 @@ struct EmptyStateView: View {
                 .font(.system(size: 48))
                 .foregroundColor(.secondary)
             
-            Text("TinySwallowをの会話を始めましょう")
+            Text("TinySwallowとの会話を始めましょう")
                 .font(.title3)
                 .fontWeight(.medium)
             
@@ -450,7 +451,7 @@ struct InputArea: View {
 
 //MARK: - 設定画面
 struct SettingsView: View {
-    @StateObject private var apiClient = APIClient.shared
+    @ObservedObject private var apiClient = APIClient.shared
     
     var body: some View {
         VStack(spacing: 20) {

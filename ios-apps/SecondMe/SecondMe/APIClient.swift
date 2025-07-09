@@ -140,6 +140,11 @@ struct APIErrorResponse: Codable {
     let timestamp: String
 }
 
+/// モデル一覧レスポンス
+struct ModelsResponse: Codable {
+    let models: [String]
+}
+
 // MARK: - Custom Errors
 
 enum APIError: LocalizedError {
@@ -148,7 +153,7 @@ enum APIError: LocalizedError {
     case decodingError(Error)
     case httpError(Int, String)
     case networkError(Error)
-    case servrerError(APIErrorResponse)
+    case serverError(APIErrorResponse)
     case timeout
     case cancelled
     
@@ -164,7 +169,7 @@ enum APIError: LocalizedError {
             return "HTTPエラー \((code)): \(message)"
         case .networkError(let error):
             return "ネットワークエラー: \(error.localizedDescription)"
-        case .servrerError(let response):
+        case .serverError(let response):
             return "サーバーエラー: \(response.detail)"
         case .timeout:
             return "リクエストがタイムアウトしました"
@@ -221,7 +226,8 @@ class APIClient: ObservableObject {
         do {
             let health: HealthResponse = try await performRequest(
                 endpoint: "/health",
-                method: .GET
+                method: .GET,
+                body: nil as EmptyResponse?
             )
             
             await MainActor.run {
@@ -241,7 +247,7 @@ class APIClient: ObservableObject {
     }
     
     /// チャット完了リクエスト
-    func chatComletion(
+    func chatCompletion(
         message: [ChatMessage],
         contextFiles: [String] = [],
         maxTokens: Int = 200,
@@ -249,23 +255,23 @@ class APIClient: ObservableObject {
     ) async throws -> ChatCompletionResponse {
         
         let request = ChatCompletionRequest(
-            messages: messages,
+            messages: message,
             contextFiles: contextFiles,
-            maxtokens: maxTokens,
+            maxTokens: maxTokens,
             temperature: temperature
         )
         
         return try await performRequest(
             endpoint: "/v1/chat/completions",
-            Method: .POST,
+            method: .POST,
             body: request
         )
     }
     
     /// 簡単な会話送信（ヘルパーメソッド）
-    func sendMeaasge(_ content: String) async throws -> String {
+    func sendMessage(_ content: String) async throws -> String {
         let message = ChatMessage.user(content)
-        let response = try await chatCompletion(messages: [message])
+        let response = try await chatCompletion(message: [message])
         
         guard let firstChoice = response.choices.first else {
             throw APIError.noData
@@ -274,17 +280,18 @@ class APIClient: ObservableObject {
     }
     
     /// 利用可能なモデル一覧取得
-    func listModels() async throw -> [String: Any] {
+    func listModels() async throws -> ModelsResponse {
         return try await performRequest(
-            endpoint : "/v1/models"
-            Method: .GET
+            endpoint: "/v1/models",
+            method: .GET,
+            body: nil as EmptyResponse?
         )
     }
     
     // MARK: - Private Methods
     
     // HTTP メソッド
-    private enum HTTPMethods: String {
+    private enum HTTPMethod: String {
         case GET = "GET"
         case POST = "POST"
         case PUT = "PUT"
@@ -294,7 +301,7 @@ class APIClient: ObservableObject {
     // 汎用リクエスト実行
     private func performRequest<T: Codable, U: Codable>(
         endpoint: String,
-        method: HTTPMethods,
+        method: HTTPMethod,
         body: T? = nil
     ) async throws -> U {
         
@@ -322,15 +329,15 @@ class APIClient: ObservableObject {
         do {
             let (data, response) = try await session.data(for: request)
             
-            // HPPTレスポンス確認
+            // HTTPレスポンス確認
             if let httpResponse = response as? HTTPURLResponse {
                 guard 200...299 ~= httpResponse.statusCode else {
                     // エラーレスポンス処理
                     if let errorResponse = try? decoder.decode(APIErrorResponse.self, from: data) {
-                        throw APIError.servrerError(errorResponse)
+                        throw APIError.serverError(errorResponse)
                     } else {
-                        let errorMesssage = String(data: data, encoding: .utf8) ?? "Unknown error"
-                        throw APIError.httpError(httpResponse.statusCode, errorMesssage)
+                        let errorMessage = String(data: data, encoding: .utf8) ?? "Unknown error"
+                        throw APIError.httpError(httpResponse.statusCode, errorMessage)
                     }
                 }
             }
@@ -364,7 +371,7 @@ class APIClient: ObservableObject {
     // voidレスポンス用のリクエスト実行
     private func performRequest<T: Codable>(
         endpoint: String,
-        method: HTTPMethods,
+        method: HTTPMethod,
         body: T? = nil
     ) async throws {
         
@@ -435,11 +442,11 @@ extension APIClient {
         ChatCompletionResponse(
             id: "mock-chat-123",
             choices: [
-                ChatCompletionChoice(
+                ChatCompletionChoices(
                     message: ChatCompletionMessage(
                         role: "assistant",
                         content: "これはモックレスポンスです。実際のTinySwallowとの接続をテストしてください。",
-                        referencedFiles: nil
+                        referencedfiles: nil
                     ),
                     finishReason: "stop"
                 )
